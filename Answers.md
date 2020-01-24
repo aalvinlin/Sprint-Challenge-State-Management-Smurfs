@@ -1,5 +1,19 @@
 1. What problem does the context API help solve?
+
+    Context API solves the problem of prop drilling: when a child or grandchild needs a prop, it must be passed down from above. These props may go through one or more layers of components who do not need the props, but must nonetheless pass it down so that children and grandchildren have access to them.
+
 1. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+    The store is considered the single source of truth because any modifications to the state can only occur there. Instead of multiple components all changing the global state all at once, state changes must go through a series of steps carried out by actions and reducers. An action creator, a function that returns an action to be carried out, specifies the type of change to be requested along with any payload data. The reducer receives this information from the action creator and checks the requested action against a list of allowed actions. If the action is on the list, then code to change the state is run. If any further conditions are met (verifying that the payload is valid, for example), then the state is changed. If the action is not on the list, however, then the reducer will typically default to returning the original state as is, unchanged.
+
 1. What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+    Application state refers to state that the application as whole needs. If multiple components need access to the state, espcially at different hierarchy levels, then this state is stored globally. In contrast, component state refers to state maintained locally, state that other components would not need. Examples would be form handlers such as onChange and onSubmit. Once the user navigates away from the form, the information is no longer needed nor useful to other components (if such info is later to used by other components, it would be moved to global state for that to happen).
+
 1. Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+    Redux-thunk allows action creators to return not only an action object, but also a callback that returns an action object once invoked. This callback, or thunk, can introduce more nuanced control in the path from action creator to reducer. Most importantly, the callback allows for asynchronous changes to the store. If the data to be sent to the reducer needs to come from a database, or if the data needs to wait for other pieces of data to arrive, the callback can be run and only if the conditions are met will the action object be sent to the reducer. This also means that the action creator can specify different actions to be sent instead of the original requested action; if the database connection fails, an action specifying the failure status can be used instead.
+
 1. What is your favorite state management system you've learned and this sprint? Please explain why!
+
+    I particularly enjoy Redux. I had heard from my build week teammates that Redux was complicated and difficult to understand, but I like the idea of managing state globally through action creators and a store and I am glad that I understand it fairly well now. By only allowing vetted actions in the reducer to modify state, it becomes easier to avoid unintended changes to state. Although creating action creators and actions involves considerably more overhead at first, they do provide a more robust way to interact with the components that modify and update state.
