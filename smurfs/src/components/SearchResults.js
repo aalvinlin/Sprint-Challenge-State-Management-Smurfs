@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const SearchResults = ({data}) => {
+const SearchResults = ({storeStatus}) => {
 
-    console.log("search results", data);
+    console.log("search results", storeStatus);
 
     return (
         <div>
             <h2>Search Results</h2>
             
-            <p>{data}</p>
+            <p>{storeStatus}</p>
         </div>
     )
 
@@ -18,7 +18,7 @@ const SearchResults = ({data}) => {
 const mapStateToProps = (state) => {
 
     return {
-        data: state.data,
+        storeStatus: state.storeStatus,
         results: state.results,
         errorMessage: state.errorMessage,
     }

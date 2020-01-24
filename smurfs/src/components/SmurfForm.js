@@ -42,7 +42,7 @@ const SmurfForm = ({search}) => {
 const mapStateToProps = (state) => {
 
     return {
-        data: state.data,
+        storeStatus: state.storeStatus,
         results: state.results,
         errorMessage: state.errorMessage,
     }
