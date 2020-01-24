@@ -9,7 +9,7 @@ const SearchResults = ({storeStatus, smurfs}) => {
     {
         return (<div></div>);
     }
-
+    
     return (
         <div>
             <h2>{smurfs.length} Smurfs in Village</h2>

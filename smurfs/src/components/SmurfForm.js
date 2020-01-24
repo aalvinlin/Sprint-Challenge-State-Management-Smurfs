@@ -12,6 +12,12 @@ const SmurfForm = ({search, addSmurf}) => {
         height: ""
     });
 
+    const [errorText, setNewErrorText] = useState({
+        name:"",
+        age: "",
+        height: ""
+    });
+    
     const handleSearch = (event) => {
 
         event.preventDefault();
@@ -20,13 +26,37 @@ const SmurfForm = ({search, addSmurf}) => {
 
     const handleChange = (event) => {
         setNewSmurfData({...newSmurfData, [event.target.name]: event.target.value});
+
+        // remove any previous error messages
+        if (event.target.value !== "")
+            { setNewErrorText({...errorText, [event.target.name]: ""}); }
     }
 
     const handleAdd = (event) => {
 
         event.preventDefault();
+
+        // if (event.target.value === "")
+        //     { setNewErrorText({...errorText, [event.target.name]: "Name cannot be blank!"}); }
+        // else
+        //     { setNewErrorText({...errorText, [event.target.name]: ""}); }
+
+        if (newSmurfData.name === "")
+            { setNewErrorText({...errorText, name: "Name cannot be blank!"}); }
+        else
+        
+        if (newSmurfData.age === "")
+            { setNewErrorText({...errorText, age: "Age cannot be blank!"}); }
+
+        if (newSmurfData.height === "")
+            { setNewErrorText({...errorText, height: "Height cannot be blank!"}); }
+
         console.log("trying to add a new smurf...", newSmurfData)
-        addSmurf(newSmurfData);
+
+        if (newSmurfData.name !== "" && newSmurfData.age !== "" && newSmurfData.height !== "")
+            {
+                addSmurf(newSmurfData);
+            }
     }
 
     return (
@@ -38,6 +68,11 @@ const SmurfForm = ({search, addSmurf}) => {
             <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
             <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
             <button onClick={handleAdd}>Add a new Smurf</button>
+
+            {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
+            {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
+            {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+
             <hr />
 
         </form>
