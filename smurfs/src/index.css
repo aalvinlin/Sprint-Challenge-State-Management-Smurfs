@@ -11,10 +11,19 @@ body {
   background-color: #99CCFF;
 }
 
-button {
+input, button {
   font-size: 2rem;
   line-height: 4rem;
 
+  display: block;
+  margin: 1rem auto;
+  width: 50%;
+
+  text-align: center;
+}
+
+button {
+ 
   color: #EEEEEE;
   background-color: #336699;
   border: 2px solid #003366;
@@ -24,4 +33,14 @@ button:hover {
   
   background-color: #6699CC;
   cursor: pointer;
+}
+
+input:hover {
+  background-color: #EEEEEE;
+}
+
+hr {
+  width: 75%;
+  border: 1px solid #333333;
+  margin: 4rem auto;
 }

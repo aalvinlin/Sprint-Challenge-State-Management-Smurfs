@@ -8,7 +8,8 @@ export const search = () => dispatch => {
 
     dispatch({type: FETCHING_DATA_START});
 
-    axios.get("https://localhost:3333/GET")
+    axios.get("localhost:3333/smurfs")
+    // axios.get("https://swapi.co/api/people/1")
         .then(response => {
 
             console.log("Data from server:", response);
