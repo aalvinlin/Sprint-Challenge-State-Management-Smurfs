@@ -12,14 +12,18 @@ body {
 }
 
 input, button {
-  font-size: 2rem;
-  line-height: 4rem;
+  font-size: 1.5rem;
+  line-height: 3rem;
 
   display: block;
   margin: 1rem auto;
-  width: 50%;
+  width: 100%;
 
   text-align: center;
+}
+
+.bigSearchButton {
+  width: 50%;
 }
 
 button {
@@ -43,4 +47,13 @@ hr {
   width: 75%;
   border: 1px solid #333333;
   margin: 4rem auto;
+}
+
+.addEditDeleteContainer {
+
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }

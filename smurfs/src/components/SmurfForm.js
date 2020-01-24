@@ -62,18 +62,47 @@ const SmurfForm = ({search, addSmurf}) => {
     return (
         <form>
 
-            <button onClick={handleSearch}>Search for existing Smurfs</button>
-            <hr />
-            <input type="text" name="name" value={newSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
-            <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
-            <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
-            <button onClick={handleAdd}>Add a new Smurf</button>
+            <button onClick={handleSearch} className="bigSearchButton">Search for existing Smurfs</button>
+                <hr />
+            
+            <div className="addEditDeleteContainer">
 
-            {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
-            {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
-            {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+                <div className="addSection">
 
-            <hr />
+                    <input type="text" name="name" value={newSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
+                    <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
+                    <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
+                    <button onClick={handleAdd}>Add a new Smurf</button>
+
+                    {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
+                    {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
+                    {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+
+                </div>
+
+                <div className="editSection">
+
+                    <input type="text" name="id" value={newSmurfData.name} onChange={handleChange} placeholder="ID of Smurf" />
+
+                    <input type="text" name="name" value={newSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
+                    <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
+                    <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
+                    <button onClick={handleAdd}>Edit Smurf</button>
+
+                    {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
+                    {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
+                    {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+
+                </div>
+
+                <div className="removeSection">
+
+                    <input type="text" name="id" value={newSmurfData.name} onChange={handleChange} placeholder="ID of Smurf" />
+                    <button onClick={handleAdd}>Delete Smurf</button>
+
+                </div>
+
+            </div>
 
         </form>
     )
