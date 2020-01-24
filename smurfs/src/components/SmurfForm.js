@@ -6,11 +6,22 @@ import { search, addSmurf } from "../actions";
 
 const SmurfForm = ({search, addSmurf}) => {
 
-    const [newSmurfData, setNewSmurfData] = useState({
+    const [addSmurfData, setAddSmurfData] = useState({
         name: "",
         age: "",
         height: ""
     });
+
+    const [editSmurfData, setEditSmurfData] = useState({
+        editId: undefined,
+        editName: "",
+        editAge: "",
+        editHeight: ""
+    });
+
+    const [deleteSmurfData, setDeleteSmurfData] = useState({
+        deleteId: undefined
+    })
 
     const [errorText, setNewErrorText] = useState({
         name:"",
@@ -25,7 +36,7 @@ const SmurfForm = ({search, addSmurf}) => {
     }
 
     const handleChange = (event) => {
-        setNewSmurfData({...newSmurfData, [event.target.name]: event.target.value});
+        setAddSmurfData({...addSmurfData, [event.target.name]: event.target.value});
 
         // remove any previous error messages
         if (event.target.value !== "")
@@ -41,22 +52,33 @@ const SmurfForm = ({search, addSmurf}) => {
         // else
         //     { setNewErrorText({...errorText, [event.target.name]: ""}); }
 
-        if (newSmurfData.name === "")
+        if (addSmurfData.name === "")
             { setNewErrorText({...errorText, name: "Name cannot be blank!"}); }
         else
         
-        if (newSmurfData.age === "")
+        if (addSmurfData.age === "")
             { setNewErrorText({...errorText, age: "Age cannot be blank!"}); }
 
-        if (newSmurfData.height === "")
+        if (addSmurfData.height === "")
             { setNewErrorText({...errorText, height: "Height cannot be blank!"}); }
 
-        console.log("trying to add a new smurf...", newSmurfData)
+        console.log("trying to add a new smurf...", addSmurfData)
 
-        if (newSmurfData.name !== "" && newSmurfData.age !== "" && newSmurfData.height !== "")
+        if (addSmurfData.name !== "" && addSmurfData.age !== "" && addSmurfData.height !== "")
             {
-                addSmurf(newSmurfData);
+                addSmurf(addSmurfData);
             }
+    }
+
+    
+    const handleEdit = (event) => {
+
+        event.preventDefault();
+    }
+
+    const handleDelete = (event) => {
+
+        event.preventDefault();
     }
 
     return (
@@ -69,36 +91,38 @@ const SmurfForm = ({search, addSmurf}) => {
 
                 <div className="addSection">
 
-                    <input type="text" name="name" value={newSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
-                    <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
-                    <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
+                    <input type="text" name="name" value={addSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
+                    {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
+                    
+                    <input type="text" name="age" value={addSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
+                    {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
+                    
+                    <input type="text" name="height" value={addSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
+                    {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+                    
                     <button onClick={handleAdd}>Add a new Smurf</button>
 
-                    {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
-                    {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
-                    {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+                    
+                    
+                    
 
                 </div>
 
                 <div className="editSection">
 
-                    <input type="text" name="id" value={newSmurfData.name} onChange={handleChange} placeholder="ID of Smurf" />
+                    <input type="text" name="id" value={editSmurfData.id} onChange={handleChange} placeholder="ID of Smurf" />
 
-                    <input type="text" name="name" value={newSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
-                    <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
-                    <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
-                    <button onClick={handleAdd}>Edit Smurf</button>
-
-                    {errorText.name !== "" ? <p className="errorText">{errorText.name}</p> : <p></p>}
-                    {errorText.age !== "" ? <p className="errorText">{errorText.age}</p> : <p></p>}
-                    {errorText.height !== "" ? <p className="errorText">{errorText.height}</p> : <p></p>}
+                    <input type="text" name="editName" value={editSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
+                    <input type="text" name="editAge" value={editSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
+                    <input type="text" name="editHeight" value={editSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
+                    <button onClick={handleEdit}>Edit Smurf</button>
 
                 </div>
 
                 <div className="removeSection">
 
-                    <input type="text" name="id" value={newSmurfData.name} onChange={handleChange} placeholder="ID of Smurf" />
-                    <button onClick={handleAdd}>Delete Smurf</button>
+                    <input type="text" name="delteId" value={deleteSmurfData.id} onChange={handleChange} placeholder="ID of Smurf" />
+                    <button onClick={handleDelete}>Delete Smurf</button>
 
                 </div>
 
