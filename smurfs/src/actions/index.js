@@ -14,7 +14,6 @@ export const search = () => dispatch => {
     dispatch({type: FETCHING_DATA_START});
 
     axios.get("http://localhost:3333/smurfs")
-    // axios.get("https://swapi.co/api/people/1")
         .then(response => {
 
             console.log("Data from server (FETCHING_DATA_SUCCESS):", response.data);
@@ -33,13 +32,12 @@ export const addSmurf = (smurfName) => dispatch => {
 
     dispatch({type: ADDING_DATA_START});
 
-    axios.push("localhost:3333/smurfs")
-    // axios.get("https://swapi.co/api/people/1")
+    axios.post("localhost:3333/smurfs")
         .then(response => {
 
-            console.log("Data from server (ADDING_DATA_SUCCESS):", response);
+            console.log("Data from server (ADDING_DATA_SUCCESS):", response.data);
 
-            dispatch({ type: ADDING_DATA_SUCCESS, payload: response});
+            dispatch({ type: ADDING_DATA_SUCCESS, payload: response.data});
         })
         .catch(response => {
 

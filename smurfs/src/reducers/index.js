@@ -10,13 +10,13 @@ import {
 
 const initialState = {
     storeStatus: "",
-    results: "",
+    smurfs: "",
     errorMessage: "",
 }
 
 const testState = {
     storeStatus: "testState",
-    results: "testResults",
+    smurfs: "testResults",
     errorMessage: "testErrorMessage",
 }
 
@@ -35,7 +35,7 @@ export const reducer = (state = initialState, action) => {
         
             console.log('successfully fetched data. In reducer.', action.payload);
 
-            return {...initialState, storeStatus: "Smurf found.", results: action.payload }
+            return {...initialState, storeStatus: "Smurf found.", smurfs: action.payload }
 
         case FETCHING_DATA_FAILURE:
     
@@ -45,19 +45,19 @@ export const reducer = (state = initialState, action) => {
         
         case ADDING_DATA_START:
         
-            console.log('fetching data in the reducer', action.payload);
+            console.log('adding data in the reducer', action.payload);
 
             return {...initialState, storeStatus: "Adding a new Smurf..." }
 
         case ADDING_DATA_SUCCESS:
         
-            console.log('successfully fetched data. In reducer.', action.payload);
+            console.log('successfully added data. In reducer.', action.payload);
 
-            return {...initialState, storeStatus: "Smurf added!", results: action.payload }
+            return {...initialState, storeStatus: "Smurf added!", smurfs: action.payload }
 
         case ADDING_DATA_FAILURE:
     
-            console.log('error fetching data. In reducer.', action.payload);
+            console.log('error adding data. In reducer.', action.payload);
 
             return {...initialState, storeStatus: "Error adding Smurf.", errorMessage: action.payload }
         
