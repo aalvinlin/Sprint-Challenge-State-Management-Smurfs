@@ -4,16 +4,16 @@ export const FETCHING_DATA_START = "FETCHING_DATA_START";
 export const FETCHING_DATA_SUCCESS = "FETCHING_DATA_SUCCESS";
 export const FETCHING_DATA_FAILURE = "FETCHING_DATA_FAILURE";
 
-export const search = (input) => dispatch => {
+export const search = () => dispatch => {
 
-    dispatch({type: FETCHING_DATA_START, payload: input});
+    dispatch({type: FETCHING_DATA_START});
 
-    axios.get("https://localhost:3333")
+    axios.get("https://localhost:3333/GET")
         .then(response => {
 
             console.log("Data from server:", response);
 
-            dispatch({ type: FETCHING_DATA_SUCCESS, payload: input});
+            dispatch({ type: FETCHING_DATA_SUCCESS, payload: response});
         })
         .catch(response => {
 

@@ -17,6 +17,12 @@ export const reducer = (state = initialState, action) => {
 
     switch (action.type) {
 
+        case FETCHING_DATA_START:
+            
+            console.log('in the reducer', action.payload);
+
+            return {...initialState, data: "ewh;afofkhwaeb" }
+
         default:
             return testState;
     }
