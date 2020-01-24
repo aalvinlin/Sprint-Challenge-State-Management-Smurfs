@@ -1,15 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const SearchResults = ({storeStatus}) => {
+const SearchResults = ({storeStatus, results}) => {
 
-    console.log("search results", storeStatus);
+    console.log("Component SearchFesults", storeStatus, results);
+
+    if (!results)
+    {
+        return (<div></div>);
+    }
 
     return (
         <div>
-            <h2>Search Results</h2>
+            <h2>Smurfs in Village</h2>
             
-            <p>{storeStatus}</p>
+            {results.map(smurf => <p>{smurf.name}: age {smurf.age}, height {smurf.height}</p>)}
         </div>
     )
 

@@ -28,12 +28,10 @@ const SmurfForm = ({search}) => {
         <form>
 
             <button onClick={handleSearch}>Search for existing Smurfs</button>
-
             <hr />
-
             <input type="text" name="userInput" value={userInput} onChange={handleChange} placeholder="name of Smurf" />
-            
             <button onClick={handleAdd}>Add a new Smurf</button>
+            <hr />
 
         </form>
     )

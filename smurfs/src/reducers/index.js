@@ -63,7 +63,7 @@ export const reducer = (state = initialState, action) => {
         
 
         default:
-            return testState;
+            return state;
     }
 
 }
