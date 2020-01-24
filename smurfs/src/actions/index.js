@@ -32,7 +32,7 @@ export const addSmurf = (smurfName) => dispatch => {
 
     dispatch({type: ADDING_DATA_START});
 
-    axios.post("localhost:3333/smurfs")
+    axios.post("http://localhost:3333/smurfs", smurfName)
         .then(response => {
 
             console.log("Data from server (ADDING_DATA_SUCCESS):", response.data);

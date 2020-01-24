@@ -10,13 +10,13 @@ import {
 
 const initialState = {
     storeStatus: "",
-    smurfs: "",
+    smurfs: [],
     errorMessage: "",
 }
 
 const testState = {
     storeStatus: "testState",
-    smurfs: "testResults",
+    smurfs: [],
     errorMessage: "testErrorMessage",
 }
 
@@ -53,7 +53,7 @@ export const reducer = (state = initialState, action) => {
         
             console.log('successfully added data. In reducer.', action.payload);
 
-            return {...initialState, storeStatus: "Smurf added!", smurfs: action.payload }
+            return {...initialState, storeStatus: "Smurf added!", smurfs: [...state.smurfs, action.payload] }
 
         case ADDING_DATA_FAILURE:
     

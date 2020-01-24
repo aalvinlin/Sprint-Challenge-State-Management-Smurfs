@@ -3,18 +3,19 @@ import { connect } from "react-redux";
 
 const SearchResults = ({storeStatus, smurfs}) => {
 
-    console.log("Component SearchFesults", storeStatus, smurfs);
+    console.log("Component SearchFesults", smurfs);
 
-    if (!smurfs)
+    if (smurfs.length === 0)
     {
         return (<div></div>);
     }
 
     return (
         <div>
-            <h2>Smurfs in Village</h2>
+            <h2>{smurfs.length} Smurfs in Village</h2>
             
-            {smurfs.map(smurf => <p>{smurf.name}: age {smurf.age}, height {smurf.height}</p>)}
+            {smurfs.map(smurf =>
+                <p key={smurf.id}>{smurf.name}: age {smurf.age}, height {smurf.height}</p>)}
         </div>
     )
 

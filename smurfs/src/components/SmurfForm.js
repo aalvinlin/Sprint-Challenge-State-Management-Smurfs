@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { connect } from "react-redux";
 
-import { search } from "../actions";
+import { search, addSmurf } from "../actions";
 
-const SmurfForm = ({search}) => {
+const SmurfForm = ({search, addSmurf}) => {
 
     const [newSmurfData, setNewSmurfData] = useState({
         name: "",
@@ -26,6 +26,7 @@ const SmurfForm = ({search}) => {
 
         event.preventDefault();
         console.log("trying to add a new smurf...", newSmurfData)
+        addSmurf(newSmurfData);
     }
 
     return (
@@ -53,4 +54,4 @@ const mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps, {search})(SmurfForm);
+export default connect(mapStateToProps, {search, addSmurf})(SmurfForm);
