@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import SmurfForm from "./components/SmurfForm";
+import SmurfForm from "./SmurfForm";
+import SearchResults from "./SearchResults";
 
 import "./App.css";
 
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <SmurfForm />
+        <SearchResults />
       </div>
     );
   }
