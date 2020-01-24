@@ -6,6 +6,14 @@ import {
     ADDING_DATA_START,
     ADDING_DATA_SUCCESS,
     ADDING_DATA_FAILURE,
+
+    EDITING_DATA_START,
+    EDITING_DATA_SUCCESS,
+    EDITING_DATA_FAILURE,
+
+    DELETING_DATA_START,
+    DELETING_DATA_SUCCESS,
+    DELETING_DATA_FAILURE,
 } from "../actions";
 
 const initialState = {
@@ -25,6 +33,8 @@ export const reducer = (state = initialState, action) => {
 
     switch (action.type) {
 
+        // actions for fetching all the Smurf in the village
+
         case FETCHING_DATA_START:
             
             console.log('fetching data in the reducer', action.payload);
@@ -43,6 +53,8 @@ export const reducer = (state = initialState, action) => {
 
             return {...initialState, storeStatus: "Error fetching Smurf.", errorMessage: action.payload }
         
+        // actions for adding a new Smurf to the village
+
         case ADDING_DATA_START:
         
             console.log('adding data in the reducer', action.payload);
@@ -60,6 +72,26 @@ export const reducer = (state = initialState, action) => {
             console.log('error adding data. In reducer.', action.payload);
 
             return {...initialState, storeStatus: "Error adding Smurf.", errorMessage: action.payload }
+        
+        // actions for deleting a Smurf by ID
+
+        case DELETING_DATA_START:
+        
+            console.log('deleting data in the reducer', action.payload);
+
+            return {...initialState, storeStatus: "Deleting Smurf..." }
+
+        case DELETING_DATA_SUCCESS:
+        
+            console.log('successfully deleted data. In reducer.', action.payload);
+
+            return {...initialState, storeStatus: "Smurf deleted!", smurfs: state.smurfs.filter(smurf => smurf.id === action.payload) }
+
+        case DELETING_DATA_FAILURE:
+    
+            console.log('error deleting data. In reducer.', action.payload);
+
+            return {...initialState, storeStatus: "Error deleting Smurf.", errorMessage: action.payload }
         
 
         default:

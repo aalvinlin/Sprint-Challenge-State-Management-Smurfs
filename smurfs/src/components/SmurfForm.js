@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { connect } from "react-redux";
 
-import { search, addSmurf } from "../actions";
+import { search, addSmurf, editSmurf, deleteSmurf } from "../actions";
 
-const SmurfForm = ({search, addSmurf}) => {
+const SmurfForm = ({search, addSmurf, editSmurf, deleteSmurf}) => {
 
     const [addSmurfData, setAddSmurfData] = useState({
         name: "",
@@ -19,9 +19,7 @@ const SmurfForm = ({search, addSmurf}) => {
         editHeight: ""
     });
 
-    const [deleteSmurfData, setDeleteSmurfData] = useState({
-        deleteId: undefined
-    })
+    const [deleteSmurfData, setDeleteSmurfData] = useState(undefined)
 
     const [errorText, setNewErrorText] = useState({
         name:"",
@@ -41,6 +39,10 @@ const SmurfForm = ({search, addSmurf}) => {
         // remove any previous error messages
         if (event.target.value !== "")
             { setNewErrorText({...errorText, [event.target.name]: ""}); }
+    }
+
+    const handleDeleteChange = (event) => {
+        setDeleteSmurfData(event.target.value);
     }
 
     const handleAdd = (event) => {
@@ -73,12 +75,17 @@ const SmurfForm = ({search, addSmurf}) => {
     
     const handleEdit = (event) => {
 
+        console.log("trying to edit smurf...", editSmurfData)
+
         event.preventDefault();
     }
 
     const handleDelete = (event) => {
 
+        console.log("trying to delete smurf...", deleteSmurfData)
+
         event.preventDefault();
+        deleteSmurf(deleteSmurfData);
     }
 
     return (
@@ -121,7 +128,7 @@ const SmurfForm = ({search, addSmurf}) => {
 
                 <div className="removeSection">
 
-                    <input type="text" name="delteId" value={deleteSmurfData.id} onChange={handleChange} placeholder="ID of Smurf" />
+                    <input type="text" name="delteId" value={deleteSmurfData} onChange={handleDeleteChange} placeholder="ID of Smurf" />
                     <button onClick={handleDelete}>Delete Smurf</button>
 
                 </div>
@@ -142,4 +149,4 @@ const mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps, {search, addSmurf})(SmurfForm);
+export default connect(mapStateToProps, {search, addSmurf, editSmurf, deleteSmurf})(SmurfForm);
