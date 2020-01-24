@@ -6,7 +6,11 @@ import { search } from "../actions";
 
 const SmurfForm = ({search}) => {
 
-    const [userInput, setUserInput] = useState("");
+    const [newSmurfData, setNewSmurfData] = useState({
+        name: "",
+        age: "",
+        height: ""
+    });
 
     const handleSearch = (event) => {
 
@@ -15,13 +19,13 @@ const SmurfForm = ({search}) => {
     }
 
     const handleChange = (event) => {
-        setUserInput(event.target.value);
+        setNewSmurfData({...newSmurfData, [event.target.name]: event.target.value});
     }
 
     const handleAdd = (event) => {
 
         event.preventDefault();
-        console.log("trying to add a new smurf...", userInput)
+        console.log("trying to add a new smurf...", newSmurfData)
     }
 
     return (
@@ -29,7 +33,9 @@ const SmurfForm = ({search}) => {
 
             <button onClick={handleSearch}>Search for existing Smurfs</button>
             <hr />
-            <input type="text" name="userInput" value={userInput} onChange={handleChange} placeholder="name of Smurf" />
+            <input type="text" name="name" value={newSmurfData.name} onChange={handleChange} placeholder="name of Smurf" />
+            <input type="text" name="age" value={newSmurfData.age} onChange={handleChange} placeholder="age of Smurf" />
+            <input type="text" name="height" value={newSmurfData.height} onChange={handleChange} placeholder="height of Smurf" />
             <button onClick={handleAdd}>Add a new Smurf</button>
             <hr />
 
